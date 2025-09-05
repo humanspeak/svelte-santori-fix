@@ -1,6 +1,6 @@
 {
     "name": "@humanspeak/svelte-santori-fix",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Normalize dimension values for Satori (img/svg) in Svelte/SvelteKit to prevent validation errors when generating OG images.",
     "keywords": [
         "svelte",
