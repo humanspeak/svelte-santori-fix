@@ -1,18 +1,18 @@
-# @humanspeak/svelte-santori-fix
+# @humanspeak/svelte-satori-fix
 
 A tiny, focused utility to make Satori accept dimension values when generating OG images from HTML or rendered Svelte components. It normalizes width/height attributes and inline styles to the numeric types Satori expects.
 
-[![NPM version](https://img.shields.io/npm/v/@humanspeak/svelte-santori-fix.svg)](https://www.npmjs.com/package/@humanspeak/svelte-santori-fix)
-[![Downloads](https://img.shields.io/npm/dm/@humanspeak/svelte-santori-fix.svg)](https://www.npmjs.com/package/@humanspeak/svelte-santori-fix)
-[![Build Status](https://github.com/humanspeak/svelte-santori-fix/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/humanspeak/svelte-santori-fix/actions/workflows/npm-publish.yml)
-[![Coverage Status](https://coveralls.io/repos/github/humanspeak/svelte-santori-fix/badge.svg?branch=main)](https://coveralls.io/github/humanspeak/svelte-santori-fix?branch=main)
-[![CodeQL](https://github.com/humanspeak/svelte-santori-fix/actions/workflows/codeql.yml/badge.svg)](https://github.com/humanspeak/svelte-santori-fix/actions/workflows/codeql.yml)
-[![Install size](https://packagephobia.com/badge?p=@humanspeak/svelte-santori-fix)](https://packagephobia.com/result?p=@humanspeak/svelte-santori-fix)
+[![NPM version](https://img.shields.io/npm/v/@humanspeak/svelte-satori-fix.svg)](https://www.npmjs.com/package/@humanspeak/svelte-satori-fix)
+[![Downloads](https://img.shields.io/npm/dm/@humanspeak/svelte-satori-fix.svg)](https://www.npmjs.com/package/@humanspeak/svelte-satori-fix)
+[![Build Status](https://github.com/humanspeak/svelte-satori-fix/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/humanspeak/svelte-satori-fix/actions/workflows/npm-publish.yml)
+[![Coverage Status](https://coveralls.io/repos/github/humanspeak/svelte-satori-fix/badge.svg?branch=main)](https://coveralls.io/github/humanspeak/svelte-satori-fix?branch=main)
+[![CodeQL](https://github.com/humanspeak/svelte-satori-fix/actions/workflows/codeql.yml/badge.svg)](https://github.com/humanspeak/svelte-satori-fix/actions/workflows/codeql.yml)
+[![Install size](https://packagephobia.com/badge?p=@humanspeak/svelte-satori-fix)](https://packagephobia.com/result?p=@humanspeak/svelte-satori-fix)
 [![Code Style: Trunk](https://img.shields.io/badge/code%20style-trunk-blue.svg)](https://trunk.io)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
-[![Types](https://img.shields.io/npm/types/@humanspeak/svelte-santori-fix.svg)](https://www.npmjs.com/package/@humanspeak/svelte-santori-fix)
-[![License](https://img.shields.io/npm/l/@humanspeak/svelte-santori-fix.svg)](https://github.com/humanspeak/svelte-santori-fix/blob/main/LICENSE)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/humanspeak/svelte-santori-fix/graphs/commit-activity)
+[![Types](https://img.shields.io/npm/types/@humanspeak/svelte-satori-fix.svg)](https://www.npmjs.com/package/@humanspeak/svelte-satori-fix)
+[![License](https://img.shields.io/npm/l/@humanspeak/svelte-satori-fix.svg)](https://github.com/humanspeak/svelte-satori-fix/blob/main/LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/humanspeak/svelte-satori-fix/graphs/commit-activity)
 
 ## Features
 
@@ -29,9 +29,9 @@ A tiny, focused utility to make Satori accept dimension values when generating O
 ## Installation
 
 ```bash
-pnpm add @humanspeak/svelte-santori-fix satori satori-html @resvg/resvg-js
+pnpm add @humanspeak/svelte-satori-fix satori satori-html @resvg/resvg-js
 # or
-npm i -S @humanspeak/svelte-santori-fix satori satori-html @resvg/resvg-js
+npm i -S @humanspeak/svelte-satori-fix satori satori-html @resvg/resvg-js
 ```
 
 ## Basic Usage (HTML → React-like element → Satori)
@@ -72,7 +72,7 @@ Use `normalizeDimensionsForSatori` right after `toReactNode(...)` and before `sa
 import satori from 'satori'
 import { Resvg } from '@resvg/resvg-js'
 import { html as toReactNode } from 'satori-html'
-import { normalizeDimensionsForSatori } from '@humanspeak/svelte-santori-fix'
+import { normalizeDimensionsForSatori } from '@humanspeak/svelte-satori-fix'
 
 // result from your component render
 const result = render(OG, {})
@@ -93,7 +93,7 @@ return new Response(image.asPng(), { headers: { 'content-type': 'image/png' } })
 ## API
 
 ```ts
-import { normalizeDimensionsForSatori } from '@humanspeak/svelte-santori-fix'
+import { normalizeDimensionsForSatori } from '@humanspeak/svelte-satori-fix'
 ```
 
 - `normalizeDimensionsForSatori(node)`

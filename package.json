@@ -1,5 +1,5 @@
 {
-    "name": "@humanspeak/svelte-santori-fix",
+    "name": "@humanspeak/svelte-satori-fix",
     "version": "0.0.1",
     "description": "Normalize dimension values for Satori (img/svg) in Svelte/SvelteKit to prevent validation errors when generating OG images.",
     "keywords": [
@@ -19,13 +19,13 @@
         "height",
         "utilities"
     ],
-    "homepage": "https://github.com/humanspeak/svelte-santori-fix",
+    "homepage": "https://github.com/humanspeak/svelte-satori-fix",
     "bugs": {
-        "url": "https://github.com/humanspeak/svelte-santori-fix/issues"
+        "url": "https://github.com/humanspeak/svelte-satori-fix/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/humanspeak/svelte-santori-fix.git"
+        "url": "git+https://github.com/humanspeak/svelte-satori-fix.git"
     },
     "funding": {
         "type": "github",
