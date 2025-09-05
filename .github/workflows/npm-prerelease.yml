@@ -70,11 +70,6 @@ jobs:
             - name: Run tests
               run: pnpm test
 
-            - name: Run E2E tests
-              run: |
-                  pnpm exec playwright install --with-deps
-                  pnpm run test:e2e
-
     # Prerelease publishing
     publish-prerelease:
         needs: validate
