@@ -48,10 +48,10 @@ const height = 630
 const width = 1200
 
 export const GET = async () => {
-	const node = toReactNode('<div style="color:red">Hello</div>')
-	const svg = await satori(node, { height, width })
-	const image = new Resvg(svg, { fitTo: { mode: 'width', value: width } }).render()
-	return new Response(image.asPng(), { headers: { 'content-type': 'image/png' } })
+    const node = toReactNode('<div style="color:red">Hello</div>')
+    const svg = await satori(node, { height, width })
+    const image = new Resvg(svg, { fitTo: { mode: 'width', value: width } }).render()
+    return new Response(image.asPng(), { headers: { 'content-type': 'image/png' } })
 }
 ```
 
@@ -79,9 +79,7 @@ const result = render(OG, {})
 const css = '' // if you collected CSS for the component, include it here
 
 // Build a single HTML string, then convert to a Satori node
-const element = normalizeDimensionsForSatori(
-	toReactNode(`${result.body}<style>${css}</style>`)
-)
+const element = normalizeDimensionsForSatori(toReactNode(`${result.body}<style>${css}</style>`))
 
 // Proceed with Satori and PNG output
 const svg = await satori(element, { height: 630, width: 1200 })
@@ -99,12 +97,12 @@ import { normalizeDimensionsForSatori } from '@humanspeak/svelte-santori-fix'
 ```
 
 - `normalizeDimensionsForSatori(node)`
-	- Accepts: `Node | Node[] | null` (tree produced by `satori-html`)
-	- Returns: same node reference, normalized in-place
-	- Behavior:
-		- For `img`, `svg`, `image`: coerces `props.width`/`props.height` when safe
-		- For `style`: coerces `style.width`/`style.height` when safe
-		- Recursively walks `children` arrays/objects
+    - Accepts: `Node | Node[] | null` (tree produced by `satori-html`)
+    - Returns: same node reference, normalized in-place
+    - Behavior:
+        - For `img`, `svg`, `image`: coerces `props.width`/`props.height` when safe
+        - For `style`: coerces `style.width`/`style.height` when safe
+        - Recursively walks `children` arrays/objects
 
 If importing within this repo:
 
@@ -116,7 +114,6 @@ import { normalizeDimensionsForSatori } from '$lib/utils/main'
 
 - Works with both simple HTML templates and component-rendered HTML
 - Place the normalization strictly between `toReactNode(...)` and `satori(...)`
-- If you later expand normalization beyond dimensions, consider a more generic name (e.g., `normalizeDimensionsForSatori` or `preprocessForSatori`)
 
 ## License
 
