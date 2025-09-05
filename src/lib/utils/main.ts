@@ -6,20 +6,20 @@
 // numeric attributes often become strings ("78" or "78px"), which triggers errors
 // like: Invalid value "78" for "width". These helpers normalize such values.
 
-type Children = Node | Node[] | string | number | null;
+type Children = Node | Node[] | string | number | null
 
 /**
  * Minimal node shape produced by `satori-html` that we care about.
  */
 export type Node = {
-	type?: string;
-	props?: Record<string, unknown> & {
-		children?: Children;
-		style?: Record<string, unknown>;
-		width?: unknown;
-		height?: unknown;
-	};
-};
+    type?: string
+    props?: Record<string, unknown> & {
+        children?: Children
+        style?: Record<string, unknown>
+        width?: unknown
+        height?: unknown
+    }
+}
 
 /**
  * Normalizes a CSS-like dimension value to a number when safe.
@@ -37,16 +37,16 @@ export type Node = {
  * toNumberIfPossible("auto") // "auto"
  */
 const toNumberIfPossible = (value: unknown): unknown => {
-	if (typeof value === 'number') return value;
-	if (typeof value !== 'string') return value;
+    if (typeof value === 'number') return value
+    if (typeof value !== 'string') return value
 
-	const trimmed = value.trim();
-	if (trimmed.endsWith('%') || trimmed === 'auto') return value;
+    const trimmed = value.trim()
+    if (trimmed.endsWith('%') || trimmed === 'auto') return value
 
-	const withoutPx = trimmed.endsWith('px') ? trimmed.slice(0, -2) : trimmed;
-	const parsed = Number(withoutPx);
-	return Number.isNaN(parsed) ? value : parsed;
-};
+    const withoutPx = trimmed.endsWith('px') ? trimmed.slice(0, -2) : trimmed
+    const parsed = Number(withoutPx)
+    return Number.isNaN(parsed) ? value : parsed
+}
 
 /**
  * Coerces width/height values on a node's props to numbers in-place.
@@ -62,20 +62,20 @@ const toNumberIfPossible = (value: unknown): unknown => {
  * walking the tree.
  */
 const fixDimensionsOnProps = (props: Node['props'], type?: string): void => {
-	if (!props) return;
+    if (!props) return
 
-	if (type === 'img' || type === 'svg' || type === 'image') {
-		if ('width' in props) props.width = toNumberIfPossible(props.width);
-		if ('height' in props) props.height = toNumberIfPossible(props.height);
-	}
+    if (type === 'img' || type === 'svg' || type === 'image') {
+        if ('width' in props) props.width = toNumberIfPossible(props.width)
+        if ('height' in props) props.height = toNumberIfPossible(props.height)
+    }
 
-	if (props.style) {
-		const { style } = props;
-		const { width: styleWidth, height: styleHeight } = style;
-		if (styleWidth !== undefined) style.width = toNumberIfPossible(styleWidth);
-		if (styleHeight !== undefined) style.height = toNumberIfPossible(styleHeight);
-	}
-};
+    if (props.style) {
+        const { style } = props
+        const { width: styleWidth, height: styleHeight } = style
+        if (styleWidth !== undefined) style.width = toNumberIfPossible(styleWidth)
+        if (styleHeight !== undefined) style.height = toNumberIfPossible(styleHeight)
+    }
+}
 
 /**
  * Recursively normalizes dimension values within a `satori-html` node tree.
@@ -93,31 +93,31 @@ const fixDimensionsOnProps = (props: Node['props'], type?: string): void => {
  * This is safe to call on `null` and will simply return `null`.
  */
 export const normalizeDimensionsForSatori = <T extends Node | Node[] | null>(node: T): T => {
-	const walk = (n: Node): Node => {
-		if (!n || typeof n !== 'object') return n;
+    const walk = (n: Node): Node => {
+        if (!n || typeof n !== 'object') return n
 
-		const { props, type } = n;
-		fixDimensionsOnProps(props, type);
+        const { props, type } = n
+        fixDimensionsOnProps(props, type)
 
-		if (!props) return n;
+        if (!props) return n
 
-		const children = props.children as Children | undefined;
-		if (Array.isArray(children)) {
-			props.children = children.map((child) => {
-				if (typeof child === 'object' && child !== null) {
-					return walk(child as Node);
-				}
-				return child;
-			}) as Children;
-		} else if (children && typeof children === 'object') {
-			props.children = walk(children as Node);
-		}
+        const children = props.children as Children | undefined
+        if (Array.isArray(children)) {
+            props.children = children.map((child) => {
+                if (typeof child === 'object' && child !== null) {
+                    return walk(child as Node)
+                }
+                return child
+            }) as Children
+        } else if (children && typeof children === 'object') {
+            props.children = walk(children as Node)
+        }
 
-		return n;
-	};
+        return n
+    }
 
-	if (Array.isArray(node)) {
-		return node.map((n) => walk(n as Node)) as T;
-	}
-	return node ? (walk(node as Node) as T) : node;
-};
+    if (Array.isArray(node)) {
+        return node.map((n) => walk(n as Node)) as T
+    }
+    return node ? (walk(node as Node) as T) : node
+}
